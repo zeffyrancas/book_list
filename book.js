@@ -380,6 +380,7 @@ function list_btn(index){
                 check.checked = true;
             }
             check.setAttribute('id',check_id);
+            check.setAttribute('class','check_btn');
 
             if(nobel_list[index][i] != "COMPLETED"){
                 span.textContent = i;
