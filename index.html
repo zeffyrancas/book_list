@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+
+    <title>BOOK</title>
+    <link rel="stylesheet" href="sanitize.css">
+    <link rel="stylesheet" href="book.css">
+</head>
+<body>
+    <div id="main_page" class="main">
+        <div class="manga">
+            <div id="search_box" class="search_box search">
+                <label for="search">検索</label>
+                <input type="text" id="search" class="search search_input" autocomplete="off" oninput="search()">
+                <button id="search_clear" class="search">クリア</button>
+            </div>
+            <h2 class="manga_h2">＜漫画＞</h2>
+            <div id="manga_sort_explanation" class="mar_left "></div>
+            <ul id="manga_list"></ul>
+
+            <div class="mar_left" id="add_new">
+                <button id="add_new_btn" class="top_btn top_menu">新規追加</button>
+            </div>
+            <div id="manga_sort" class="mar_left ">
+                <button id="manga_sort_btn" class="top_btn top_menu">順番入れ替え</button>
+                <button id="manga_sort_ok" class="left hidden top_btn">実行</button>
+            </div>
+            <div class="hidden mar_left" id="add_manga">
+                <label>タイトル：<input type="text" id="manga_add_name" class="textbox" autocomplete="off"></label></br>
+                <label>発売済み：<input type="text" inputmode="numeric" id="manga_add_buy" class="textbox"  autocomplete="off">巻</label></br>
+                <label>読書済み：<input type="text" inputmode="numeric" id="manga_add_read" class="textbox"  autocomplete="off">巻</label></br>
+                <button id="manga_add_btn" class="top_btn">決定</button>
+                <button id="manga_add_btn_continuou" class="top_btn">連続追加</button>
+                <button id="manga_add_btn_cancel" class="top_btn">終了</button>
+                <div id="add_title" class="hidden">
+                    <h4>追加中のタイトル</h4>
+                    <ul id="add_title_list"></ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="nobel">
+            <h2>＜ライトノベル＞</h2>
+            <div id="nobel_sort_explanation" class="mar_left "></div>
+            <ul id="nobel_list"></ul>
+
+            <div class="mar_left" id="nobel_add_new">
+                <button id="nobel_add_new_btn" class="top_btn top_menu">新規追加</button>
+            </div>
+            <div id="nobel_sort" class="mar_left ">
+                <button id="nobel_sort_btn" class="top_btn top_menu">順番入れ替え</button>
+                <button id="nobel_sort_ok" class="left hidden top_btn">実行</button>
+            </div>
+            <div class="hidden mar_left" id="add_nobel">
+                <label>タイトル：<input type="text" id="nobel_add_name" class="textbox" autocomplete="off"></label></br>
+                <label>発売済み：<input type="text" inputmode="numeric" id="nobel_add_buy" class="textbox"  autocomplete="off">巻</label></br>
+                <label>読書済み：<input type="text" inputmode="numeric" id="nobel_add_read" class="textbox"  autocomplete="off">巻</label></br>
+                <button id="nobel_add_btn" class="top_btn">決定</button>
+                <button id="nobel_add_btn_continuou" class="top_btn">連続追加</button>
+                <button id="nobel_add_btn_cancel" class="top_btn">終了</button>
+                <div id="nobel_add_title" class="hidden">
+                    <h4>追加中のタイトル</h4>
+                    <ul id="nobel_add_title_list"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="sub_page" class="sub hidden">
+        <h2 id="book_title"></h2>
+        <div id="harf_explanation" class="mar_left"></div>
+        <ul id="volume"></ul>
+        <div class="sub_menu">
+            <div id="add_edit_top" class="mar_left">
+                <button id="add_edit_btn">情報の追加・編集</button>
+            </div>
+            <div id="add_edit" class="hidden mar_left">
+                <div class="" id="add_register">
+                    <h3>＜最新刊発売情報追加＞</h3>
+                    <label>発売日<input type="date" id="date" autocomplete="off"></label>
+                    <button id="register">登録</button></br>
+                </div>
+
+                <div class=" hidden" id="edit_register">
+                    <label>最新刊発売日情報<button id="info_edit">変更</button></label></br>
+                    <div class=" hidden" id="date_edit">
+                    <label>発売日<input type="date" id="new_date" autocomplete="off"></label>
+                    <button id="new_register">変更</button></br>
+                    <button class="" id="new_delete">最新刊情報消去</button>
+                    </div>
+                </div>
+
+                <div class="">
+                    <h3 class="edit_title">＜編集＞</h3>
+                    <button id="edit_memo" class="sub_btn">メモ追加</button></br>
+                    <button id="edit_buy" class="sub_btn">購入状況変更</button></br>
+                    <button id="completed_btn" class="sub_btn">この作品は完結しました</button></br>
+                    <button id="title_delete_btn" class="sub_btn">この作品を消去する</button>
+                </div>
+            </div>
+
+            <div id="edit_buy_box" class="hidden  mar_left">
+                <input type="text" id="edit_buy_number">巻
+                <input type="text" id="edit_buy_or" list="or">を
+                <input type="text" id="edit_buy_status" list="edit_buy_status_list">状態にする
+                <button id="edit_buy_btn" class="left">決定</button>
+                <datalist id="or">
+                    <option value="のみ"></option>
+                    <option value="以降"></option>
+                </datalist>
+                <datalist id="edit_buy_status_list">
+                    <option value="未購入"></option>
+                    <option value="購入"></option>
+                </datalist>
+            </div>
+
+            <div id="edit_memo_box" class="hidden  mar_left">
+                <label>どこ：<input type="text" inputmode="numeric" id="edit_memo_number" autocomplete="off">巻</label></br>
+                <label>内容：<input type="text" id="edit_memo_contents" autocomplete="off"autocomplete="off"></label></br>
+                <button id="edit_memo_btn" class="sub_btn">追加</button>
+            </div>
+
+            <div id="add_harf_box" class="hidden  mar_left">
+                <button id="add_harf_ok" class="sub_btn">決定</button>
+                <button id="add_harf_clear" class="sub_btn">やめる</button>
+            </div>
+
+            <div class="tomain">
+                <button id="tomain">メイン画面へ</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="book.js"></script>
+</body>
+</html>
